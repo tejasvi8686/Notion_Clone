@@ -1,5 +1,5 @@
 import { pgTable, foreignKey, pgEnum, uuid, text, jsonb, timestamp, boolean, bigint, integer } from "drizzle-orm/pg-core"
-import { sql } from "drizzle-orm"
+  import { sql } from "drizzle-orm"
 
 export const keyStatus = pgEnum("key_status", ['expired', 'invalid', 'valid', 'default'])
 export const keyType = pgEnum("key_type", ['stream_xchacha20', 'secretstream', 'secretbox', 'kdf', 'generichash', 'shorthash', 'auth', 'hmacsha256', 'hmacsha512', 'aead-det', 'aead-ietf'])
@@ -21,15 +21,15 @@ export const users = pgTable("users", {
 	paymentMethod: jsonb("payment_method"),
 	email: text("email"),
 },
-	(table) => {
-		return {
-			usersIdFkey: foreignKey({
-				columns: [table.id],
-				foreignColumns: [table.id],
-				name: "users_id_fkey"
-			}),
-		}
-	});
+(table) => {
+	return {
+		usersIdFkey: foreignKey({
+			columns: [table.id],
+			foreignColumns: [table.id],
+			name: "users_id_fkey"
+		}),
+	}
+});
 
 export const customers = pgTable("customers", {
 	id: uuid("id").primaryKey().notNull().references(() => users.id),
@@ -68,13 +68,12 @@ export const subscriptions = pgTable("subscriptions", {
 	priceId: text("price_id").references(() => prices.id),
 	quantity: integer("quantity"),
 	cancelAtPeriodEnd: boolean("cancel_at_period_end"),
-	created: timestamp("created", { withTimezone: true, mode: 'string' }).default(sql`now()`).notNull(),
-	currentPeriodStart: timestamp("current_period_start", { withTimezone: true, mode: 'string' }).default(sql`now()`).notNull(),
-	currentPeriodEnd: timestamp("current_period_end", { withTimezone: true, mode: 'string' }).default(sql`now()`).notNull(),
-	endedAt: timestamp("ended_at", { withTimezone: true, mode: 'string' }).default(sql`now()`),
-	cancelAt: timestamp("cancel_at", { withTimezone: true, mode: 'string' }).default(sql`now()`),
-	canceledAt: timestamp("canceled_at", { withTimezone: true, mode: 'string' }).default(sql`now()`),
-	trialStart: timestamp("trial_start", { withTimezone: true, mode: 'string' }).default(sql`now()`),
-	trialEnd: timestamp("trial_end", { withTimezone: true, mode: 'string' }).default(sql`now()`),
-  });
-
+	created: timestamp("created", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())).notNull(),
+	currentPeriodStart: timestamp("current_period_start", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())).notNull(),
+	currentPeriodEnd: timestamp("current_period_end", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())).notNull(),
+	endedAt: timestamp("ended_at", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())),
+	cancelAt: timestamp("cancel_at", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())),
+	canceledAt: timestamp("canceled_at", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())),
+	trialStart: timestamp("trial_start", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())),
+	trialEnd: timestamp("trial_end", { withTimezone: true, mode: 'string' }).default(timezone('utc'::text, now())),
+});
