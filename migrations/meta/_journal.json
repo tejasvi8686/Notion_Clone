@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1706012604547,
+      "tag": "0000_breezy_sasquatch",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1706014587286,
+      "tag": "0001_perfect_norman_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1706030956572,
+      "tag": "0002_romantic_sinister_six",
+      "breakpoints": true
+    }
+  ]
+}
