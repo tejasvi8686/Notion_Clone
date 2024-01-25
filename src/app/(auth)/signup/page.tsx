@@ -1,6 +1,6 @@
 import React from 'react'
 
-const template = () => {
+const Signup = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const template = () => {
   )
 }
 
-export default template
+export default Signup
