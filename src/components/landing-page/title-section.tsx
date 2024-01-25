@@ -35,7 +35,8 @@ const TitleSection: React.FC<TitleSectionProps> = ({
             className="rounded-full 
             px-3
             py-1
-            dark:bg-black"
+            dark:bg-black "
+            
           >
             {pill}
           </div>
