@@ -235,7 +235,7 @@ const Header = () => {
             Login
           </Button>
         </Link>
-        <Link href="/signup">
+        <Link href={"/signup"}>
           <Button
             variant="btn-primary"
             className="whitespace-nowrap"
